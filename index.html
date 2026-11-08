@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FCKEMALL — The Meme Coin for Degens</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #05070b;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* NAV */
+
+nav {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+
+    background: rgba(3,5,8,.95);
+
+    border-bottom: 1px solid #3d320c;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.logo span {
+    color: #ffd21a;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffd21a;
+}
+
+/* HERO */
+
+.hero {
+
+    height: 850px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    padding: 0 6% 80px;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.30),
+            rgba(0,0,0,.05)
+        ),
+        url("hero.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+}
+
+/* DARK GRADIENT */
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 45%;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.85)
+        );
+
+    z-index: 2;
+}
+
+/* HERO TEXT */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 10;
+
+    max-width: 700px;
+
+}
+
+.badge {
+
+    display: inline-block;
+
+    border: 1px solid #ffd21a;
+
+    color: #ffd21a;
+
+    padding: 10px 15px;
+
+    border-radius: 50px;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    background: rgba(0,0,0,.55);
+
+}
+
+h1 {
+
+    font-size: clamp(60px, 11vw, 120px);
+
+    line-height: .85;
+
+    margin: 20px 0;
+
+    font-weight: 900;
+
+    font-style: italic;
+
+    letter-spacing: -6px;
+
+    text-shadow:
+        5px 5px 0 #000;
+
+}
+
+h1 span {
+
+    color: #ffd21a;
+
+}
+
+.tagline {
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+
+}
+
+.description {
+
+    max-width: 600px;
+
+    color: #ddd;
+
+    line-height: 1.7;
+
+    font-size: 17px;
+
+}
+
+.buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+
+}
+
+.button {
+
+    display: inline-block;
+
+    padding: 15px 25px;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    border: 1px solid #ffd21a;
+
+}
+
+.gold {
+
+    background: #ffd21a;
+
+    color: #050505;
+
+}
+
+.dark {
+
+    background: rgba(0,0,0,.7);
+
+    color: white;
+
+}
+
+/* ========================= */
+/* FALLING MONEY */
+/* ========================= */
+
+.money-rain {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 6;
+
+}
+
+/* MONEY */
+
+.money {
+
+    position: absolute;
+
+    top: -100px;
+
+    width: 65px;
+
+    height: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d8f5d0,
+            #62b86b,
+            #c8edc1
+        );
+
+    border: 2px solid rgba(255,255,255,.8);
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.45);
+
+    opacity: .95;
+
+    animation:
+        fall
+        var(--speed)
+        linear
+        infinite;
+
+    animation-delay:
+        var(--delay);
+
+}
+
+/* DOLLAR SIGN */
+
+.money::before {
+
+    content: "$";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    color: #176026;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+}
+
+/* MONEY INNER BORDER */
+
+.money::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border:
+
+        1px solid
+        rgba(20,80,30,.5);
+
+    border-radius: 2px;
+
+}
+
+/* FALLING ANIMATION */
+
+@keyframes fall {
+
+    0% {
+
+        transform:
+
+            translate3d(
+                0,
+                -120px,
+                0
+            )
+
+            rotate(0deg);
+
+    }
+
+    25% {
+
+        transform:
+
+            translate3d(
+                55px,
+                25vh,
+                0
+            )
+
+            rotate(80deg);
+
+    }
+
+    50% {
+
+        transform:
+
+            translate3d(
+                -45px,
+                50vh,
+                0
+            )
+
+            rotate(170deg);
+
+    }
+
+    75% {
+
+        transform:
+
+            translate3d(
+                60px,
+                75vh,
+                0
+            )
+
+            rotate(250deg);
+
+    }
+
+    100% {
+
+        transform:
+
+            translate3d(
+                -30px,
+                calc(100vh + 150px),
+                0
+            )
+
+            rotate(360deg);
+
+    }
+
+}
+
+/* DIFFERENT MONEY */
+
+.money:nth-child(1) {
+    left: 3%;
+    --speed: 7s;
+    --delay: -2s;
+}
+
+.money:nth-child(2) {
+    left: 12%;
+    width: 48px;
+    height: 24px;
+    --speed: 9s;
+    --delay: -6s;
+}
+
+.money:nth-child(3) {
+    left: 22%;
+    --speed: 6.5s;
+    --delay: -3s;
+}
+
+.money:nth-child(4) {
+    left: 32%;
+    width: 52px;
+    height: 26px;
+    --speed: 8.5s;
+    --delay: -7s;
+}
+
+.money:nth-child(5) {
+    left: 43%;
+    --speed: 7.5s;
+    --delay: -1s;
+}
+
+.money:nth-child(6) {
+    left: 54%;
+    width: 48px;
+    height: 24px;
+    --speed: 10s;
+    --delay: -8s;
+}
+
+.money:nth-child(7) {
+    left: 65%;
+    --speed: 7s;
+    --delay: -4s;
+}
+
+.money:nth-child(8) {
+    left: 76%;
+    width: 55px;
+    height: 27px;
+    --speed: 9s;
+    --delay: -5s;
+}
+
+.money:nth-child(9) {
+    left: 88%;
+    width: 48px;
+    height: 24px;
+    --speed: 6.8s;
+    --delay: -2s;
+}
+
+.money:nth-child(10) {
+    left: 18%;
+    --speed: 11s;
+    --delay: -9s;
+}
+
+.money:nth-child(11) {
+    left: 37%;
+    width: 45px;
+    height: 23px;
+    --speed: 8s;
+    --delay: -6s;
+}
+
+.money:nth-child(12) {
+    left: 70%;
+    width: 48px;
+    height: 24px;
+    --speed: 7.8s;
+    --delay: -3s;
+}
+
+/* STATS */
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    background: #07090d;
+
+    border-top:
+        1px solid #3d320c;
+
+    border-bottom:
+        1px solid #3d320c;
+
+}
+
+.stat {
+
+    padding: 30px;
+
+    text-align: center;
+
+    border-right:
+        1px solid #29240e;
+
+}
+
+.stat:last-child {
+    border-right: 0;
+}
+
+.stat strong {
+
+    display: block;
+
+    color: #ffd21a;
+
+    font-size: 25px;
+
+}
+
+.stat span {
+
+    color: #999;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+}
+
+/* SECTIONS */
+
+section.content {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 100px 6%;
+
+}
+
+h2 {
+
+    font-size:
+        clamp(40px,7vw,65px);
+
+    margin-bottom: 15px;
+
+}
+
+h2 span {
+
+    color: #ffd21a;
+
+}
+
+.text {
+
+    color: #aaa;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+}
+
+/* CARDS */
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+
+    margin-top: 35px;
+
+}
+
+.card {
+
+    background: #0c0f14;
+
+    border:
+        1px solid #29240e;
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+}
+
+.card h3 {
+
+    color: #ffd21a;
+
+    margin-bottom: 12px;
+
+}
+
+.card p {
+
+    color: #aaa;
+
+    line-height: 1.6;
+
+}
+
+/* TOKENOMICS */
+
+.tokenomics {
+
+    background: #07090d;
+
+    border-top:
+        1px solid #17150d;
+
+    border-bottom:
+        1px solid #17150d;
+
+}
+
+.token-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+}
+
+.token {
+
+    background: #0c0f14;
+
+    border:
+        1px solid #29240e;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+}
+
+.token small {
+
+    color: #888;
+
+}
+
+.token strong {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: #ffd21a;
+
+    font-size: 24px;
+
+}
+
+/* SOCIAL */
+
+.social {
+
+    margin-top: 35px;
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+/* FOOTER */
+
+footer {
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: #666;
+
+    border-top:
+        1px solid #1c1c1c;
+
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    nav {
+        padding: 0 20px;
+    }
+
+    nav .links {
+        display: none;
+    }
+
+    .hero {
+
+        height: 720px;
+
+        padding:
+            0 25px
+            55px;
+
+        background-position:
+            62% center;
+
+    }
+
+    h1 {
+
+        font-size: 70px;
+
+        letter-spacing: -4px;
+
+    }
+
+    .tagline {
+
+        font-size: 14px;
+
+        letter-spacing: 2px;
+
+    }
+
+    .stats {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .stat {
+
+        border-right: 0;
+
+        border-bottom:
+            1px solid #29240e;
+
+    }
+
+    .cards {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .token-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+}
+
+@media(max-width:500px) {
+
+    .token-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .money {
+
+        width: 48px;
+
+        height: 24px;
+
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+
+<nav>
+
+    <div class="logo">
+        FCKEM<span>ALL</span>
+    </div>
+
+    <div class="links">
+
+        <a href="#about">About</a>
+
+        <a href="#tokenomics">
+            Tokenomics
+        </a>
+
+        <a href="#community">
+            Community
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <!-- FALLING MONEY -->
+
+    <div class="money-rain">
+
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+        <div class="money"></div>
+
+    </div>
+
+
+    <!-- HERO CONTENT -->
+
+    <div class="hero-content">
+
+        <div class="badge">
+            SOLANA MEME COIN
+        </div>
+
+        <h1>
+            FCKEM<span>ALL</span>
+        </h1>
+
+        <div class="tagline">
+            THE MEME COIN FOR DEGENS
+        </div>
+
+        <p class="description">
+            No rules. No mercy.
+            Just memes. 🐕💸
+        </p>
+
+        <div class="buttons">
+
+            <a
+                class="button gold"
+                href="https://x.com/fckeemall"
+                target="_blank">
+
+                FOLLOW ON X
+
+            </a>
+
+            <a
+                class="button dark"
+                href="#tokenomics">
+
+                TOKENOMICS
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+    <div class="stat">
+
+        <strong>
+            MEME
+        </strong>
+
+        <span>
+            POWERED
+        </span>
+
+    </div>
+
+    <div class="stat">
+
+        <strong>
+            COMMUNITY
+        </strong>
+
+        <span>
+            DRIVEN
+        </span>
+
+    </div>
+
+    <div class="stat">
+
+        <strong>
+            SOLANA
+        </strong>
+
+        <span>
+            NETWORK
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section
+    id="about"
+    class="content">
+
+    <h2>
+        Welcome to
+        <span>FCKEMALL.</span>
+    </h2>
+
+    <p class="text">
+
+        The meme coin for degens.
+        No fake promises. No boring vibes.
+        Just memes, community and pure degen energy.
+
+    </p>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>
+                🔥 MEME CULTURE
+            </h3>
+
+            <p>
+                A recognizable mascot,
+                loud visuals and memes
+                made to be shared.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                👥 COMMUNITY
+            </h3>
+
+            <p>
+                Built around the people,
+                the memes and the culture.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                ⚡ SOLANA
+            </h3>
+
+            <p>
+                Built on the Solana network.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TOKENOMICS -->
+
+<section
+    id="tokenomics"
+    class="content tokenomics">
+
+    <h2>
+        Token<span>omics.</span>
+    </h2>
+
+    <p class="text">
+
+        Simple. Transparent.
+        No unnecessary complications.
+
+    </p>
+
+
+    <div class="token-grid">
+
+        <div class="token">
+
+            <small>
+                TOKEN
+            </small>
+
+            <strong>
+                $FCKEMALL
+            </strong>
+
+        </div>
+
+
+        <div class="token">
+
+            <small>
+                NETWORK
+            </small>
+
+            <strong>
+                SOLANA
+            </strong>
+
+        </div>
+
+
+        <div class="token">
+
+            <small>
+                TOTAL SUPPLY
+            </small>
+
+            <strong>
+                1 BILLION
+            </strong>
+
+        </div>
+
+
+        <div class="token">
+
+            <small>
+                TAX
+            </small>
+
+            <strong>
+                0%
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMMUNITY -->
+
+<section
+    id="community"
+    class="content">
+
+    <h2>
+        Stay
+        <span>locked in.</span>
+    </h2>
+
+    <p class="text">
+
+        Follow FCKEMALL for the launch
+        and official announcements.
+
+    </p>
+
+
+    <div class="social">
+
+        <a
+            class="button gold"
+            href="https://x.com/fckeemall"
+            target="_blank">
+
+            𝕏 FOLLOW FCKEMALL
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 FCKEMALL
+
+    <br>
+
+    THE MEME COIN FOR DEGENS
+
+</footer>
+
+</body>
+</html>
